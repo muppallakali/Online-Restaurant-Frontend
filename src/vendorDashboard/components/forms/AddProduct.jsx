@@ -5,9 +5,9 @@ export default function AddProduct() {
   let[productName,setProductname]=useState("")
   let[price,setPrice]=useState("")
   let [category,setCategory]=useState([])
-  let[bestseller,setbestseller]=useState(false)
+  let[bestSeller,setbestSeller]=useState(false)
   let[image,setimage]=useState(null)
-  let[descp,setdescp]=useState("")
+  let[description,setdescp]=useState("")
 
   function handleimgupload(e){
     const selectedImage=e.target.files[0]
@@ -25,7 +25,7 @@ export default function AddProduct() {
   }
   function handleBestSeller(e){
     const value=e.target.value==="true"
-    setbestseller(value)
+    setbestSeller(value)
   }
   async function handleProduct(e) {
     e.preventDefault()
@@ -38,9 +38,9 @@ export default function AddProduct() {
       let formData=new FormData()
       formData.append("productName",productName)
       formData.append("price",price)
-      formData.append("descp",descp)
+      formData.append("description",description)
       formData.append("image",image)
-      formData.append("bestseller", bestseller);
+      formData.append("bestSeller", bestSeller);
       category.forEach((value)=>{
         formData.append("category",value)
       })
@@ -57,7 +57,7 @@ export default function AddProduct() {
       setProductname("")
       setPrice("")
       setCategory([])
-      setbestseller(false)
+      setbestSeller(false)
       setdescp("")
       setimage(null)
     }
@@ -92,15 +92,15 @@ export default function AddProduct() {
           <label htmlFor="" className='catLabel'>Best Seller: </label>
           <div className="checkboxContainer">
             <label htmlFor="">Yes</label>
-            <input type="radio" value="true" checked={bestseller === true}  onChange={handleBestSeller} />            
+            <input type="radio" value="true" checked={bestSeller === true}  onChange={handleBestSeller} />            
           </div>
           <div className="checkboxContainer">
           <label htmlFor="">No</label>
-          <input type="radio" value="false" checked={bestseller === false} onChange={handleBestSeller} />
+          <input type="radio" value="false" checked={bestSeller === false} onChange={handleBestSeller} />
           </div>          
         </div>
         <label htmlFor="description">Description</label>
-        <input type="text" id='description' value={descp} onChange={(e)=>setdescp(e.target.value)} required />
+        <input type="text" id='description' value={description} onChange={(e)=>setdescp(e.target.value)} required />
         <label htmlFor="image">Image</label>
         <input type="file" id='image' onChange={handleimgupload} required /> 
         <center className="submit">
