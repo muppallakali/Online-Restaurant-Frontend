@@ -10,6 +10,7 @@ export default function Login({handlewelcome}) {
   async function handleSubmit(e){
     try{
       e.preventDefault()
+     
     const res= await fetch(`${API_Path}/vendor/login`,
       {method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -24,7 +25,7 @@ export default function Login({handlewelcome}) {
       setpassword("")
       alert("Login Success")
       handlewelcome()
-    }    
+    }      
     const vendorid=data.vendorId
     console.log( "checking for vendor id: ",vendorid)
     const vendorResponse=await fetch(`${API_Path}/vendor/single-vendor/${vendorid}`)
